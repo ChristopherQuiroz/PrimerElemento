@@ -42,7 +42,7 @@ namespace PrimerExamen.Controllers
 
                 string jsonString = await response.Content.ReadAsStringAsync();
 
-                var usuariosExternos = JsonSerializer.Deserialize<List<User>>(jsonString, _jsonOptions);
+                var usuariosExternos = JsonSerializer.Deserialize<List<JsonPlaceholderUser>>(jsonString, _jsonOptions);
 
                 if (usuariosExternos == null || usuariosExternos.Count == 0)
                 {
@@ -52,17 +52,17 @@ namespace PrimerExamen.Controllers
                 var usuariosResponse = usuariosExternos.Select(u => new User
                 {
                     Id = u.Id,
-                    NombreCompleto = u.NombreCompleto,
+                    NombreCompleto = u.Name, 
                     Username = u.Username,
                     Email = u.Email,
-                    Ciudad = u.Ciudad,
-                    Empresa = u.Empresa,
-                    Telefono = u.Telefono
+                    Ciudad = u.Address?.City ?? "Desconocida", 
+                    Empresa = u.Company?.Name ?? "Desconocida", 
+                    Telefono = u.Phone != null ? u.Phone.Replace("x", "ext.") : "" 
                 }).ToList();
 
                 usuariosResponse = usuariosResponse.OrderBy(u => u.NombreCompleto).ToList();
 
-                var Response = new
+                var finalResponse = new
                 {
                     TotalUsuarios = usuariosResponse.Count,
                     DistribucionPorCiudad = usuariosResponse.Count > 5 ?
@@ -71,16 +71,33 @@ namespace PrimerExamen.Controllers
                     Usuarios = usuariosResponse
                 };
 
-                return Ok(JsonHelper.ToJson(Response));
-            }
-            catch (HttpRequestException ex)
-            {
-                return StatusCode(503, $"No se pudo conectar con el servicio: {ex.Message}");
+                return Ok(finalResponse);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
+        }
+
+        public class JsonPlaceholderUser
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Username { get; set; }
+            public string Email { get; set; }
+            public string Phone { get; set; }
+            public AddressData Address { get; set; }
+            public CompanyData Company { get; set; }
+        }
+
+        public class AddressData
+        {
+            public string City { get; set; }
+        }
+
+        public class CompanyData
+        {
+            public string Name { get; set; }
         }
     }
 }
