@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace PrimerExamen.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/usuarios")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -102,7 +102,7 @@ namespace PrimerExamen.Controllers
 
         #region usuarios por ciudad
         //GET /api/usuarios/ciudad?nombre={texto}
-        [HttpGet("/ciudad")]
+        [HttpGet("ciudad")]
         public async Task<IActionResult> GetUsuariosPorCiudad([FromQuery] string nombre)
         {
             try
@@ -136,15 +136,16 @@ namespace PrimerExamen.Controllers
                     });
                 }
 
-                var usuariosFiltrados = usuariosExternos.Where(u => u.Direccion.Ciudad != null && u.Direccion.Ciudad.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
+                var usuariosFiltrados = usuariosExternos.Where(u => u.Direccion?.Ciudad != null && u.Direccion.Ciudad.Contains(nombre, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 var ciudades = usuariosFiltrados.Select(u => new
                 {
                     Id = u.Id,
                     NombreCompleto = u.Nombre,
                     Ciudad = u.Direccion.Ciudad,
-                    Coordenadas = $"{u.Direccion.Geo.Lat ?? "0"}, {u.Direccion.Geo.Lng ?? "0"}"
-                }).ToList();
+                    Coordenadas = $"{u.Direccion.Geo?.Lat ?? "0"}, {u.Direccion.Geo?.Lng ?? "0"}"
+                }).OrderBy(u => u.NombreCompleto)
+                .ToList();
 
                 var responseObj = new
                 {
@@ -174,7 +175,7 @@ namespace PrimerExamen.Controllers
 
         #region usuarios cercanos
         //GET /api/usuarios/cercanos?lat={lat}&lng={lng}&radio={km}
-        [HttpGet("/cercanos")]
+        [HttpGet("cercanos")]
         public async Task<IActionResult> GetUsuariosCercanos(
             [FromQuery] double lat,
             [FromQuery] double lng,
@@ -224,46 +225,47 @@ namespace PrimerExamen.Controllers
 
                 foreach (var usuario in usuariosExternos)
                 {
-                    if(!double.TryParse(usuario.Direccion.Geo.Lat, out double usuarioLat) || !double.TryParse(usuario.Direccion.Geo.Lng, out double usuarioLng))
+                    if (!double.TryParse(usuario.Direccion?.Geo?.Lat, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double usuarioLat) ||
+                       !double.TryParse(usuario.Direccion?.Geo?.Lng, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double usuarioLng))
                     {
                         continue;
                     }
 
                     double distancia = Math.Sqrt(Math.Pow(usuarioLat - lat, 2) + Math.Pow(usuarioLng - lng, 2)) * 100;
 
-                    if(distancia <= radio)
+                    if (distancia <= radio)
                     {
                         usuariosCercanos.Add(new
                         {
-                            Id = usuario.Id,
-                            NombreCompleto = usuario.Nombre,
-                            Ciudad = usuario.Direccion.Ciudad,
-                            Coordenadas = $"{usuarioLat}, {usuarioLng}",
-                            DistanciaKm = Math.Round(distancia, 2),
-                            UbicacionLink = $"https://maps.google.com/?q-{usuario.Direccion.Geo.Lat},{usuario.Direccion.Geo.Lng}"
+                            id = usuario.Id,
+                            nombre = usuario.Nombre,
+                            ciudad = usuario.Direccion?.Ciudad,
+                            coordenadas = $"{usuario.Direccion?.Geo?.Lat}, {usuario.Direccion?.Geo?.Lng}",
+                            distanciaNumerica = distancia, 
+                            distanciaAproximada = $"{Math.Round(distancia)} km", 
+                            ubicacion = $"https://maps.google.com/?q={usuario.Direccion?.Geo?.Lat},{usuario.Direccion?.Geo?.Lng}" 
                         });
                     }
                 }
 
-                var usuariosOrdenados = usuariosCercanos
-                    .OrderBy(u => u.DistanciaKm)
-                    .Select(u=> new
+                var usuariosOrdenados = usuariosCercanos.OrderBy(u => u.distanciaNumerica)
+                    .Select(u => new
                     {
-                        u.Id,
-                        u.NombreCompleto,
-                        u.Ciudad,
-                        u.Coordenadas,
-                        u.DistanciaKm,
-                        u.UbicacionLink
+                        u.id,
+                        u.nombre,
+                        u.ciudad,
+                        u.coordenadas,
+                        u.distanciaAproximada,
+                        u.ubicacion
                     })
                     .ToList();
 
                 var responseObj = new
                 {
-                    CentroBusqueda = new { lat, lng },
-                    Radio = radio,
-                    TotalEncontrados = usuariosOrdenados.Count,
-                    Usuarios = usuariosOrdenados
+                    centroBusqueda = new { lat, lng },
+                    radioBuscado = $"{radio} km",
+                    totalEncontrados = usuariosOrdenados.Count,
+                    usuarios = usuariosOrdenados
                 };
 
                 return Ok(JsonHelper.ToJson(responseObj));

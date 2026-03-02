@@ -83,23 +83,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chris\\.nuget\\packages\\": {},
+    "C:\\Users\\Matias Mancilla\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Cosas de Chris\\UCB\\Semestre 5 - 2026\\TecWeb I\\First Proyect\\PrimerExamen\\PrimerExamen\\PrimerExamen\\PrimerExamen.csproj",
+      "projectUniqueName": "I:\\DESCARGAS 2\\CHRIS ENDS\\PrimerElemento\\PrimerExamen.csproj",
       "projectName": "PrimerExamen",
-      "projectPath": "D:\\Cosas de Chris\\UCB\\Semestre 5 - 2026\\TecWeb I\\First Proyect\\PrimerExamen\\PrimerExamen\\PrimerExamen\\PrimerExamen.csproj",
-      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "D:\\Cosas de Chris\\UCB\\Semestre 5 - 2026\\TecWeb I\\First Proyect\\PrimerExamen\\PrimerExamen\\PrimerExamen\\obj\\",
+      "projectPath": "I:\\DESCARGAS 2\\CHRIS ENDS\\PrimerElemento\\PrimerExamen.csproj",
+      "packagesPath": "C:\\Users\\Matias Mancilla\\.nuget\\packages\\",
+      "outputPath": "I:\\DESCARGAS 2\\CHRIS ENDS\\PrimerElemento\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Matias Mancilla\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

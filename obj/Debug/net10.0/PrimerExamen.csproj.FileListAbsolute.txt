@@ -32,3 +32,38 @@ D:\Cosas de Chris\UCB\Semestre 5 - 2026\TecWeb I\First Proyect\PrimerExamen\Prim
 D:\Cosas de Chris\UCB\Semestre 5 - 2026\TecWeb I\First Proyect\PrimerExamen\PrimerExamen\PrimerExamen\obj\Debug\net10.0\PrimerExamen.pdb
 D:\Cosas de Chris\UCB\Semestre 5 - 2026\TecWeb I\First Proyect\PrimerExamen\PrimerExamen\PrimerExamen\obj\Debug\net10.0\PrimerExamen.genruntimeconfig.cache
 D:\Cosas de Chris\UCB\Semestre 5 - 2026\TecWeb I\First Proyect\PrimerExamen\PrimerExamen\PrimerExamen\obj\Debug\net10.0\ref\PrimerExamen.dll
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\appsettings.Development.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\appsettings.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\PrimerExamen.staticwebassets.endpoints.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\PrimerExamen.exe
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\PrimerExamen.deps.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\PrimerExamen.runtimeconfig.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\PrimerExamen.dll
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\PrimerExamen.pdb
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\bin\Debug\net10.0\Microsoft.OpenApi.dll
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.csproj.AssemblyReference.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\rpswa.dswa.cache.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.GeneratedMSBuildEditorConfig.editorconfig
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.AssemblyInfoInputs.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.AssemblyInfo.cs
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.csproj.CoreCompileInputs.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.MvcApplicationPartsAssemblyInfo.cs
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.MvcApplicationPartsAssemblyInfo.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.sourcelink.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\rjimswa.dswa.cache.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\scopedcss\bundle\PrimerExamen.styles.css
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\staticwebassets.build.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\staticwebassets.build.json.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\staticwebassets.development.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\swae.build.ex.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerEx.FCB782B7.Up2Date
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.dll
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\refint\PrimerExamen.dll
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.pdb
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.genruntimeconfig.cache
+I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\ref\PrimerExamen.dll
