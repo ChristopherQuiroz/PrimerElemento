@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PrimerExamen.Models;
 
 namespace PrimerExamen.Controllers
 {
@@ -18,85 +19,64 @@ namespace PrimerExamen.Controllers
         [HttpGet("{id}/tarjeta")]
         public async Task<IActionResult> GetTarjeta(int id)
         {
-            var response = await _httpClient.GetAsync($"/users/{id}");
-
-            if (!response.IsSuccessStatusCode)
-                return NotFound(new { mensaje = "Usuario no encontrado" });
-
-            var content = await response.Content.ReadAsStringAsync();
-            var u = System.Text.Json.JsonSerializer.Deserialize<UserExternal>(content,
-                new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-
-            string telFormateado = u.Phone.Replace("x", "ext.");
-
-            string webFinal = u.Website.StartsWith("http") ? u.Website : $"https://{u.Website}";
-
-            var resultado = new
+            try
             {
-                tarjeta = new
+                var response = await _httpClient.GetAsync($"/users/{id}");
+
+                if (!response.IsSuccessStatusCode)
+                    return NotFound(new { mensaje = "Usuario no encontrado" });
+
+                var content = await response.Content.ReadAsStringAsync();
+                var u = System.Text.Json.JsonSerializer.Deserialize<ApiUser>(content,
+                    new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+
+                string telFormateado = u.Telefono.Replace("x", "ext. ");
+
+                string webFinal = u.PaginaWeb.StartsWith("http") ? u.PaginaWeb : $"https://{u.PaginaWeb}";
+
+                var resultado = new
                 {
-                    encabezado = new
+                    tarjeta = new
                     {
-                        nombre = u.Name.ToUpper(),
-                        usuario = $"@{u.Username}"
-                    },
-                    contacto = new
-                    {
-                        email = u.Email,
-                        telefono = telFormateado,
-                        sitioWeb = webFinal
-                    },
-                    direccion = new
-                    {
-                        completa = $"{u.Address.Street}, {u.Address.Suite} - {u.Address.City}, {u.Address.Zipcode}",
-                        geo = $"{u.Address.Geo.Lat}, {u.Address.Geo.Lng}"
-                    },
-                    empresa = new
-                    {
-                        nombre = u.Company.Name,
-                        lema = $"\"{u.Company.CatchPhrase}\"",
-                        giro = u.Company.Bs
-                    },
-                    mapa = $"https://maps.google.com/?q={u.Address.Geo.Lat},{u.Address.Geo.Lng}"
-                }
-            };
+                        encabezado = new
+                        {
+                            nombre = u.Nombre.ToUpper(),
+                            usuario = $"@{u.Username}"
+                        },
+                        contacto = new
+                        {
+                            email = u.Email,
+                            telefono = telFormateado,
+                            sitioWeb = webFinal
+                        },
+                        direccion = new
+                        {
+                            completa = $"{u.Direccion.Calle}, {u.Direccion.Suite} - {u.Direccion.Ciudad}, {u.Direccion.CodigoPostal}",
+                            geo = $"{u.Direccion.Geo.Lat}, {u.Direccion.Geo.Lng}"
+                        },
+                        empresa = new
+                        {
+                            nombre = u.Empresa.Nombre,
+                            lema = $"\"{u.Empresa.frase}\"",
+                            giro = u.Empresa.Calle
+                        },
+                        mapa = $"https://maps.google.com/?q={u.Direccion.Geo.Lat},{u.Direccion.Geo.Lng}"
+                    }
+                };
 
-            return Ok(resultado);
+                return Ok(resultado);
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, new { mensaje = "Error al conectar con el servicio externo", detalle = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { mensaje = "Error interno del servidor", detalle = ex.Message });
+            }
+
         }
-    }
 
-    public class UserExternal
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Website { get; set; }
-        public AddressData Address { get; set; }
-        public CompanyData Company { get; set; }
-    }
-
-    public class AddressData
-    {
-        public string Street { get; set; }
-        public string Suite { get; set; }
-        public string City { get; set; }
-        public string Zipcode { get; set; }
-        public GeoData Geo { get; set; }
-    }
-
-    public class GeoData
-    {
-        public string Lat { get; set; }
-        public string Lng { get; set; }
-    }
-
-    public class CompanyData
-    {
-        public string Name { get; set; }
-        public string CatchPhrase { get; set; }
-        public string Bs { get; set; }
     }
 }

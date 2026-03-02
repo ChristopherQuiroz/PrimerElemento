@@ -68,6 +68,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PrimerExamen.Controllers.UsersController",
+    "Method": "GetInformacionDeContactos",
+    "RelativePath": "api/usuarios/telefonos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PrimerExamen.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

@@ -287,6 +287,60 @@ namespace PrimerExamen.Controllers
         }
         #endregion
 
+        #region telefonos
+        [HttpGet("telefonos")]
+        public async Task<IActionResult> GetInformacionDeContactos()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("/users");
 
+                if (!response.IsSuccessStatusCode)
+                {
+                    return StatusCode((int)response.StatusCode, "Error al obtener los usuarios externos.");
+                }
+
+                string jsonString = await response.Content.ReadAsStringAsync();
+
+                var usuariosExternos = JsonSerializer.Deserialize<List<ApiUser>>(jsonString, _jsonOptions);
+
+                if(usuariosExternos == null || usuariosExternos.Count == 0)
+                {
+                    return NotFound(new { mensaje = "No se encontraron usuarios en la fuente externa" });
+                }
+
+                var directorio = usuariosExternos.Select(u => new
+                {
+                    Id = u.Id,
+                    Nombre = u.Nombre,
+                    TelefonoOriginal = u.Telefono,
+                    TelefonoFormateado = FormatearTelefono(u.Telefono),
+                    TieneExtension = u.Telefono != null && u.Telefono.Contains("x"),
+                    Email = u.Email
+                }).ToList();
+
+                int usuariosConExtension = directorio.Count(d => d.TieneExtension);
+                int usuariosSinExtension = directorio.Count - usuariosConExtension;
+
+                var Response = new
+                {
+                    TotalContactos = directorio.Count,
+                    ContactosConExtension = usuariosConExtension,
+                    ContactosSinExtension = usuariosSinExtension,
+                    Directorio = directorio
+                };
+
+                return Ok(JsonHelper.ToJson(Response));
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(503, $"No se pudo conectar con el servicio: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+        #endregion
     }
 }

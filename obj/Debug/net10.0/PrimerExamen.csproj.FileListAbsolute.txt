@@ -67,3 +67,4 @@ I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\refint\PrimerExamen.d
 I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.pdb
 I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\PrimerExamen.genruntimeconfig.cache
 I:\DESCARGAS 2\CHRIS ENDS\PrimerElemento\obj\Debug\net10.0\ref\PrimerExamen.dll
+D:\Cosas de Chris\UCB\Semestre 5 - 2026\TecWeb I\First Proyect\PrimerExamen\PrimerExamen\PrimerExamen\obj\Debug\net10.0\PrimerExamen.sourcelink.json

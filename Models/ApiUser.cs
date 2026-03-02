@@ -18,6 +18,8 @@ namespace PrimerExamen.Models
 
         [JsonPropertyName("phone")] 
         public string Telefono { get; set; }
+        [JsonPropertyName("website")]
+        public string PaginaWeb { get; set; }
 
         [JsonPropertyName("company")] 
         public Empresa Empresa { get; set; }
@@ -25,8 +27,15 @@ namespace PrimerExamen.Models
 
     public class Direccion
     {
+        [JsonPropertyName("street")]
+        public string Calle { get; set; }
+        [JsonPropertyName("suite")]
+        public string Suite { get; set; }
+
         [JsonPropertyName("city")] 
         public string Ciudad { get; set; }
+        [JsonPropertyName("zipcode")]
+        public string CodigoPostal { get; set; }
 
         [JsonPropertyName("geo")]
         public Geo Geo { get; set; }
@@ -36,6 +45,10 @@ namespace PrimerExamen.Models
     {
         [JsonPropertyName("name")]
         public string Nombre { get; set; }
+        [JsonPropertyName("catchPhrase")]
+        public string frase { get; set; }
+        [JsonPropertyName("bs")]
+        public string Calle { get; set; }
     }
 
     public class Geo
