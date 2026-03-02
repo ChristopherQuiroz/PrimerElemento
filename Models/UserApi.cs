@@ -14,10 +14,17 @@
     public class Direccion
     {
         public string Ciudad { get; set; }
+        public Geo Geo { get; set; }
     }
 
     public class Empresa
     {
         public string Nombre { get; set; }
+    }
+
+    public class Geo
+    {
+        public string Lat { get; set; }
+        public string Lng { get; set; }
     }
 }
